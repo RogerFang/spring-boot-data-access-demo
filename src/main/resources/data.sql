@@ -1,0 +1,1 @@
+INSERT INTO product (id, name, description, price) VALUES (1, "电脑", "电脑系列产品", 10000)
