@@ -40,7 +40,37 @@ public class ProductServiceTest {
 
     @Test
     public void pageByName() throws Exception {
-        Page<Product> productPage = productService.pageByName("电脑", 1, 10);
+        Page<Product> productPage = productService.pageByName("电脑", 0, 10);
         System.out.println(productPage.getTotalElements());
+    }
+
+    @Test
+    public void findByAuto() throws Exception {
+        Product example = new Product();
+        example.setDescription("电脑");
+        example.setPrice(20000.0);
+        Page<Product> productPage = productService.findByAuto(example, 1, 10);
+        System.out.println(productPage.getContent().size());
+    }
+
+    @Test
+    public void findWithDynamicSpec() throws Exception {
+        productService.findWithDynamicSpec();
+    }
+
+    @Test
+    public void saveWithRollback() throws Exception {
+        Product example = new Product();
+        example.setName("电脑, 回滚测试");
+        example.setPrice(20000.0);
+        productService.saveWithRollback(example);
+    }
+
+    @Test
+    public void saveWithNoRollback() throws Exception {
+        Product example = new Product();
+        example.setName("电脑, 不回滚测试");
+        example.setPrice(20000.0);
+        productService.saveWithNoRollback(example);
     }
 }
